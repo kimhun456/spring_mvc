@@ -2,7 +2,6 @@ package com.example.spring_mvc.data.service
 
 import com.example.spring_mvc.data.dao.TodoDao
 import com.example.spring_mvc.data.entity.TodoEntity
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -10,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 class TodoService(private val todoDao: TodoDao) {
 
     @Transactional(readOnly = true)
-    fun getAllTodos(): List<TodoEntity> {
+    fun getTodos(): List<TodoEntity> {
         return todoDao.getTodos()
     }
 
