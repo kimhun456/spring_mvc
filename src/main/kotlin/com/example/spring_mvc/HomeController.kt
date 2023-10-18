@@ -1,4 +1,4 @@
-package com.example.spring_mvc.presentation
+package com.example.spring_mvc
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller

@@ -1,10 +1,9 @@
-package com.example.spring_mvc.presentation
+package com.example.spring_mvc
 
 import com.example.spring_mvc.config.ApplicationConfig
 import com.example.spring_mvc.data.dao.TodoDao
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.boot.web.servlet.ServletComponentScan
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 @SpringBootApplication
@@ -16,7 +15,7 @@ fun main(args: Array<String>) {
     val context = AnnotationConfigApplicationContext(ApplicationConfig::class.java)
     val todoDao = context.getBean(TodoDao::class.java)
     todoDao.createTable()
-    todoDao.insertTodo("TEST todo!")
+    todoDao.insertTodo("eat kimchi")
     todoDao.getTodos().forEach { println(it) }
     todoDao.getTodo(1)?.let { println(it) }
 
