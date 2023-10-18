@@ -7,8 +7,12 @@
 <body>
 <h1>TODO list</h1>
 
-<c:forEach items="${list}" var="todo">
-    <p>${todo.todo}</p>
+<c:forEach items="${todoList}" var="todo">
+    <p>
+        <c:if test="${todo.done}">Complete</c:if>
+        <c:if test="${!todo.done}">Progressing</c:if>
+            ${todo.todo}
+    </p>
 </c:forEach>
 </body>
 </html>

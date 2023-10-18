@@ -16,7 +16,9 @@ class TodoDao(private val jdbcTemplate: JdbcTemplate) {
 
     @PostConstruct
     fun init() {
-        simpleJdbcInsert = SimpleJdbcInsert(jdbcTemplate).withTableName("todos").usingGeneratedKeyColumns("id")
+        simpleJdbcInsert = SimpleJdbcInsert(jdbcTemplate)
+            .withTableName("todos")
+            .usingGeneratedKeyColumns("id")
     }
 
     @Transactional

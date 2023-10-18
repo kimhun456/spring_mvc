@@ -16,7 +16,7 @@ class TodoService(private val todoDao: TodoDao) {
 
     @Transactional(readOnly = true)
     fun getTodo(id: Long): TodoEntity {
-        return todoDao.getTodo(id) ?: throw Exception("not found")
+        return todoDao.getTodo(id) ?: throw Exception("Todo is not found")
     }
 
     @Transactional()

@@ -13,7 +13,7 @@ class TodoController(private val todoService: TodoService) {
     @GetMapping("/list")
     fun getLists(model: Model): String {
         val todos = todoService.getAllTodos()
-        model.addAttribute("list", todos)
+        model.addAttribute("todoList", todos)
         return "list"
     }
 }

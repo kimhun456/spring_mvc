@@ -15,10 +15,4 @@ fun main(args: Array<String>) {
     val context = AnnotationConfigApplicationContext(ApplicationConfig::class.java)
     val todoDao = context.getBean(TodoDao::class.java)
     todoDao.createTable()
-    todoDao.insertTodo("eat kimchi")
-    todoDao.getTodos().forEach { println(it) }
-    todoDao.getTodo(1)?.let { println(it) }
-
-    todoDao.updateTodo(todoEntity = todoDao.getTodo(1)!!.copy(done = true))
-    todoDao.getTodos().forEach { println(it) }
 }
