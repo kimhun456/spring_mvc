@@ -1,9 +1,10 @@
-package com.example.spring_mvc
+package com.example.spring_mvc.presentation
 
 import com.example.spring_mvc.config.ApplicationConfig
 import com.example.spring_mvc.data.dao.TodoDao
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.boot.web.servlet.ServletComponentScan
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 @SpringBootApplication
