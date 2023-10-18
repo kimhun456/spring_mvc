@@ -14,4 +14,27 @@ class TodoApiController(
     fun getList(): List<TodoEntity> {
         return todoService.getTodos()
     }
+
+    @GetMapping("/{id}")
+    fun getTodo(@PathVariable id: Long): TodoEntity {
+        return todoService.getTodo(id)
+    }
+
+    @PostMapping
+    fun addTodo(@RequestBody todo: TodoEntity): TodoEntity {
+        return todoService.addTodo(todo.todo)
+    }
+
+    @DeleteMapping
+    fun deleteTodo(@RequestBody todo: TodoEntity): String {
+        todoService.deleteTodo(todo.id)
+        return "Okay"
+    }
+
+
+    @PatchMapping
+    fun updateTodo(@RequestBody todo: TodoEntity): String {
+        todoService.updateTodo(todo.id)
+        return "Okay"
+    }
 }
