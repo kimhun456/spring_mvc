@@ -1,5 +1,6 @@
 package com.example.spring_mvc
 
+import com.example.spring_mvc.data.entity.TodoEntity
 import com.example.spring_mvc.data.service.TodoService
 import org.springframework.web.bind.annotation.*
 
@@ -10,7 +11,7 @@ class TodoApiController(
 ) {
 
     @GetMapping
-    fun getList(): String {
-        return todoService.getTodos().toString()
+    fun getList(): List<TodoEntity> {
+        return todoService.getTodos()
     }
 }
