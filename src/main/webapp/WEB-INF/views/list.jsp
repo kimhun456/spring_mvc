@@ -18,6 +18,8 @@
         <c:if test="${!todo.done}">Progressing</c:if>
             ${todo.todo} &nbsp;&nbsp;
         <a href="delete?id=${todo.id}">DELETE</a>
+        &nbsp;&nbsp;
+        <a href="modify?id=${todo.id}">MODIFY</a>
     </p>
 </c:forEach>
 </body>

@@ -34,6 +34,13 @@ class TodoController(private val todoService: TodoService) {
         return "redirect:/todo/list"
     }
 
+    @GetMapping("/modify")
+    fun modifyTodo(@RequestParam("id") id: Long): String {
+        logger.info("modifyTodo id: $id")
+        todoService.updateTodo(id)
+        return "redirect:/todo/list"
+    }
+
     companion object {
         private val logger = LoggerFactory.getLogger(TodoController::class.java)
     }
