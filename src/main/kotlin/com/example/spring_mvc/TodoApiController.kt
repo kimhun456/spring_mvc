@@ -10,6 +10,11 @@ class TodoApiController(
     private val todoService: TodoService
 ) {
 
+    @GetMapping("/bearerTest")
+    fun bearerTest(@RequestHeader("Authorization") key: String): String {
+        return key
+    }
+
     @GetMapping
     fun getList(): List<TodoEntity> {
         return todoService.getTodos()
