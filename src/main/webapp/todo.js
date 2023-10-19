@@ -2,16 +2,16 @@
 
 let basicDatas = [];
 
-function getTodos(){
+function getTodos() {
     const xhr = new XMLHttpRequest();
-    xhr.open("get","http://localhost:8080/todomvc/api/todos");
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState === 4 ){
-            if(xhr.status === 200){
+    xhr.open("get", "http://localhost:8080/api/todos");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
                 // json 문자열을 json 객체로 변환시킨다.
                 var todos = JSON.parse(this.responseText);
                 console.log(todos);
-                for(let i = 0; i < todos.length; i++){
+                for (let i = 0; i < todos.length; i++) {
                     todoItemAdd(todos[i]);
                 }
             }
@@ -20,42 +20,42 @@ function getTodos(){
     xhr.send();
 }
 
-function updateTodo(id){
-    let updateTodo = {"id":id};
+function updateTodo(id) {
+    let updateTodo = {"id": id};
     let xhr = new XMLHttpRequest();
-    xhr.open('PATCH','http://localhost:8080/todomvc/api/todos');
+    xhr.open('PATCH', 'http://localhost:8080/api/todos');
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(updateTodo));
 }
 
-function deleteTodo(id){
+function deleteTodo(id) {
     let delTodo = {"id": id};
     let xhr = new XMLHttpRequest();
-    xhr.open('DELETE','http://localhost:8080/todomvc/api/todos');
+    xhr.open('DELETE', 'http://localhost:8080/api/todos');
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(delTodo));
 }
 
-function postTodo(todo){
+function postTodo(todo) {
     let xhr = new XMLHttpRequest();
-    xhr.open('post','http://localhost:8080/todomvc/api/todos');
+    xhr.open('post', 'http://localhost:8080/api/todos');
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onload = function(){
+    xhr.onload = function () {
         // 글쓰기를 할 경우 ajax의 결과를 json 오브젝트로 변환하여 추가한다.
         todoItemAdd(JSON.parse(xhr.responseText));
     };
-    xhr.send(JSON.stringify({"todo":todo}));
+    xhr.send(JSON.stringify({"todo": todo}));
 }
 
 getTodos();
 
 let todoUl = document.querySelector("#todo-item-list");
 
-todoUl.addEventListener('click',function(event){
+todoUl.addEventListener('click', function (event) {
     let eventTarget = event.target;
-    if(event.target.tagName === 'LI' || event.target.tagName === 'SPAN'){
-        if(event.target.tagName ==='LI'){
-            eventTarget =eventTarget.querySelector('.todo-text');
+    if (event.target.tagName === 'LI' || event.target.tagName === 'SPAN') {
+        if (event.target.tagName === 'LI') {
+            eventTarget = eventTarget.querySelector('.todo-text');
         }
 
         let liObj = eventTarget.parentElement;
@@ -69,9 +69,9 @@ const inputbtn = document.querySelector('.add-button');
 //  const myinput = document.querySelector('#myInput');
 
 
-inputbtn.addEventListener('click', function(){
+inputbtn.addEventListener('click', function () {
     inputValue = document.querySelector('#myInput').value;
-    if(inputValue === ''){
+    if (inputValue === '') {
         alert("할 일을 입력해 주세요^^ ");
         return;
     }
@@ -79,16 +79,16 @@ inputbtn.addEventListener('click', function(){
     postTodo(inputValue);
 });
 
-function todoItemAdd(todoObj){
+function todoItemAdd(todoObj) {
     console.log(todoObj);
     const li = document.createElement('li');
     li.className = "todo-item";
     const textSpan = document.createElement('SPAN');
-    textSpan.className = "todo-text" ;
+    textSpan.className = "todo-text";
 
     const todotxt = document.createTextNode(todoObj.todo);
     textSpan.appendChild(todotxt);
-    if(todoObj.done == true){
+    if (todoObj.done == true) {
         // 완료된 작업일 경우 css를 이용하여 줄을 긋는다.
         textSpan.classList.toggle('checked');
     }
@@ -104,7 +104,7 @@ function todoItemAdd(todoObj){
     li.appendChild(removeSpan);
 
     // 동적으로 x버튼을 클릭했을 때 처리해야할 이벤트를 추가한다.
-    removeSpan.addEventListener('click',function(){
+    removeSpan.addEventListener('click', function () {
         let liObj = this.parentElement;
         console.log(liObj);
         deleteTodo(liObj.getAttribute("id"));
